@@ -1,8 +1,8 @@
-let user = require('../model/User');
+let user = require('../database/UserDubom');
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
-let UserDB = mongoose.model('User', user);
+let UserDB = mongoose.model('UserDubom', user);
 
 class User {
   async createUser(nome, email, password) {
