@@ -24,7 +24,7 @@ class User {
         console.log(err);
       }
     } else {
-      console.log('Informe um endereço válido!');
+      console.log('Informe um endereço de E-mail válido!');
     }
   }
 }
