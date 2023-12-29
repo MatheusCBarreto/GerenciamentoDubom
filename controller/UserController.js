@@ -12,4 +12,4 @@ class UserController {
   async login(req, res) {}
 }
 
-module.exports = UserController;
+module.exports = new UserController();
