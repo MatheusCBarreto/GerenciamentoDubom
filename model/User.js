@@ -23,10 +23,15 @@ class User {
   // criar a lógica para buscar um usuário com base no email
   // usar o método find do mongo
   async findEmail(email) {
-    if (email == undefined) {
-      res.status(404);
-      res.send('Email n');
-      return;
+    try {
+      let resultEmail = await Userdb.find({ email: email });
+      if (resultEmail != undefined) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 

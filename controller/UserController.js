@@ -17,8 +17,8 @@ class UserController {
 
       return false;
     }
-    // substituir o método find pelo findEmail presente no modal User
-    let emailAlreadyExist = await User.find({ email: email });
+
+    let emailAlreadyExist = await User.findEmail(email);
     if (emailAlreadyExist) {
       res.status(406);
       res.json({ errorEmailExist: 'Este email já está cadastrado!' });
