@@ -32,10 +32,23 @@ class User {
       }
     } catch (err) {
       console.log(err);
+      return false;
     }
   }
 
-  async update() {}
+  async dataUser(name, email, role) {
+    try {
+      let result = await Userdb.find();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async update(name, email, role) {
+    try {
+      let;
+    } catch (err) {}
+  }
 
   async userDelete(email) {}
 }
