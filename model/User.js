@@ -24,7 +24,7 @@ class User {
   // usar o método find do mongo
   async findEmail(email) {
     try {
-      let resultEmail = await Userdb.find({ email: email });
+      let resultEmail = await Userdb.findOne({ email: email });
       if (resultEmail != undefined) {
         return true;
       } else {
@@ -36,18 +36,36 @@ class User {
     }
   }
 
-  async dataUser(name, email, role) {
+  // esta função deve retornar todos os dados do usuário a função find deve ser substituida no método update abaixo
+  async dataUser(name, email, role) {}
+
+  async update(name, email, role) {
+    let userNewData = {};
+
     try {
-      let result = await Userdb.find();
+      let result = await Userdb.find({ email: email });
+      if (result != undefined) {
+        if (email != Userdb.email) {
+          userNewData = email;
+        }
+      } else {
+        console.log('Erro interno!');
+      }
+
+      if (name != undefined || name != Userdb.name) {
+        userNewData = name;
+      } else {
+        console.log('Erro interno!');
+      }
+
+      if (role != undefined || role != Userdb.role) {
+        userNewData = role;
+      } else {
+        console.log('Erro interno!');
+      }
     } catch (err) {
       console.log(err);
     }
-  }
-
-  async update(name, email, role) {
-    try {
-      let;
-    } catch (err) {}
   }
 
   async userDelete(email) {}
