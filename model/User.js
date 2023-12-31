@@ -1,4 +1,4 @@
-let user = require('../database/UserDubom');
+let user = require('../database/connection');
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
