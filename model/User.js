@@ -63,6 +63,7 @@ class User {
       } else {
         console.log('Erro interno!');
       }
+      await Userdb.update(userNewData);
     } catch (err) {
       console.log(err);
     }
