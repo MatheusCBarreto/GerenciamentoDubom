@@ -36,6 +36,18 @@ class User {
     }
   }
 
+  async allUsers() {
+    try {
+      let users = await Userdb.find();
+      if (users == undefined) {
+        return users;
+      } else {
+        let msg = 'Não há usuários cadastrados';
+        return msg;
+      }
+    } catch (err) {}
+  }
+
   async dataUser(email) {
     try {
       let result = await Userdb.find({ email: email });

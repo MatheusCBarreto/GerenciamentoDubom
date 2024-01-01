@@ -35,7 +35,10 @@ class UserController {
     await User.createUser(name, email, password);
   }
 
-  async index(req, res) {}
+  async index(req, res) {
+    let users = await User.allUsers();
+    res.json({ users });
+  }
 
   async login(req, res) {}
 }
