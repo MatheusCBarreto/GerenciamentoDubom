@@ -36,8 +36,19 @@ class User {
     }
   }
 
-  // esta função deve retornar todos os dados do usuário a função find deve ser substituida no método update abaixo
-  async dataUser(name, email, role) {}
+  async dataUser(email) {
+    try {
+      let result = await Userdb.find({ email: email });
+
+      if (result != undefined) {
+        return result;
+      } else {
+        console.log('Usuário não existe');
+      }
+    } catch (err) {
+      console.log('Erro interno!');
+    }
+  }
 
   async update(name, email, role) {
     let userNewData = {};
@@ -69,7 +80,20 @@ class User {
     }
   }
 
-  async userDelete(email) {}
+  async userDelete(email) {
+    try {
+      let user = await Userdb.findOne({ email: email });
+
+      if (user == undefined) {
+        console.log('Usuário não encontrado, logo não pode ser deletado!');
+        return;
+      }
+
+      await Userdb.deleteOne(user);
+    } catch (err) {
+      console.log('Erro interno!');
+    }
+  }
 }
 
 module.exports = User;
