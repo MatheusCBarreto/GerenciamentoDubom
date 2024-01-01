@@ -20,9 +20,9 @@ class User {
       console.log(err);
     }
   }
-  async findEmail(id) {
+  async findEmail(email) {
     try {
-      let result = await Userdb.findOne({ id: id });
+      let result = await Userdb.findOne({ email: email });
       if (result != undefined) {
         return true;
       } else {

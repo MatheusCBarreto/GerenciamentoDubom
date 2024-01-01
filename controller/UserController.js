@@ -2,6 +2,8 @@ let User = require('../model/User');
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcrypt');
 
+let secretWord = 'sistemaDubom';
+
 class UserController {
   async create(req, res) {
     let { name, email, password } = req.body;
@@ -40,6 +42,24 @@ class UserController {
 
   async login(req, res) {
     let { email, password } = req.body;
+
+    let user = await User.dataUser(email);
+
+    if (user != undefined) {
+      let operation = await bcrypt.compare(password, user.password);
+
+      if (operation) {
+        let token = jwt.sign({ email, role: user.role }, secretWord);
+        res.status(200);
+        res.json({ token: token });
+      } else {
+        res.status(406);
+        res.json({ error: 'Senha incorreta!' });
+      }
+    } else {
+      res.status(406);
+      res.json({ status: false, error: 'O usuário não existe! ' });
+    }
   }
 }
 
