@@ -5,8 +5,9 @@ const HomeController = require('../controller/HomeController');
 const UserController = require('../controller/UserController');
 
 router.get('/', HomeController.index);
+router.get('/home', UserController.index);
 router.post('/cadastro', UserController.create);
-// router.post();
+router.post('/login', UserController.login);
 // router.put();
 // router.delete();
 
