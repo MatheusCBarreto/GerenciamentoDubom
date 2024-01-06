@@ -46,9 +46,9 @@ class User {
     } catch (err) {}
   }
 
-  async dataUser(id) {
+  async dataUser(email) {
     try {
-      let result = await Userdb.find({ id: id });
+      let result = await Userdb.find({ email: email });
 
       if (result != undefined) {
         return result;

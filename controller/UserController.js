@@ -54,11 +54,41 @@ class UserController {
         res.json({ token: token });
       } else {
         res.status(406);
-        res.json({ error: 'Senha incorreta!' });
+        res.json({ error: 'E-mail ou senha incorretos!' });
       }
     } else {
       res.status(406);
       res.json({ status: false, error: 'O usuário não existe! ' });
+    }
+  }
+
+  async updateUser(req, res) {
+    let { name, email, role } = req.body;
+
+    let result = await User.update(name, email, role);
+
+    if (result != undefined) {
+      if (result.status) {
+        res.status(200);
+        res.send('Dados atualizados com sucesso!');
+      }
+    } else {
+      res.status(406);
+      res.json({ error: 'Usuário não encontrado!' });
+    }
+  }
+
+  async delete(req, res) {
+    let { email } = req.body;
+
+    let result = await User.userDelete(email);
+
+    if (result) {
+      res.status(200);
+      res.send('Usuário deletado com sucesso!');
+    } else {
+      res.status(406);
+      res.send('Não foi possível realizar esta operação!');
     }
   }
 }
